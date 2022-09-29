@@ -1,0 +1,13 @@
+<body>
+  {{!<h1>/Beers</h1>}}
+  <div class='beers-items'>
+    {{#each beersFromAPI}}
+      <h2>{{this.name}}</h2>
+      <p>{{this.tagline}}</p>
+      <div class='beers-item'>
+        <img class='beer-img' src='{{this.image_url}}' alt='picture of beer' />
+      </div>
+      <p>{{this.description}}</p>
+    {{/each}}
+  </div>
+</body>

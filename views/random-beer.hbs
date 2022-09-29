@@ -1,0 +1,21 @@
+<body>
+
+  {{#each responseFromAPI}}
+    <h2>{{this.name}}</h2>
+    <p>{{this.tagline}}</p>
+    <img
+      class='beer-img'
+      src='{{this.image_url}}'
+      alt='{{this.name}}'
+      style='height: 180px'
+    />
+    <p>{{this.description}}</p>
+    <h4>Food Pairing</h4>
+    <ul>
+      {{#each this.food_pairing}}
+        <li><p>{{this}}</p></li>
+      {{/each}}
+    </ul>
+    <p><strong>Brewer Tips:</strong>{{this.brewers_tips}}</p>
+  {{/each}}
+</body>
