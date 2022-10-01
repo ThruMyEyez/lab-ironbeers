@@ -2,15 +2,18 @@
 white: #f7f9f9;
 light-blue: #2081c3;
 dark-blue: #0a2c42;
+dark-blue: #0a2c42;
 grey: #bfbfbf;
 font-family: Arial, Helvetica, sans-serif;
 */
+
 :root {
   --font-general: Arial, Helvetice, sans-serif;
-  --col-whithe: #f7f9f9;
-  --col-d-blue: #0a2c42;
+  --col-white: #f7f9f9;
+  --col-d-blue: rgb(10, 44, 66);
   --col-l-blue: #2081c3;
   --col-grey: #bfbfbf;
+  --col-alpha-d-blue: rgba(10, 44, 66, 0.4);
 }
 
 * {
@@ -19,10 +22,24 @@ font-family: Arial, Helvetica, sans-serif;
 
 body {
   font-family: var(--font-general);
+  background-color: var(--col-white);
+}
+
+body::before {
+  content: "";
+  position: fixed;
+  top: -10;
+  left: 0;
+  height: 10px;
+  width: 100vw;
+  z-index: 100;
+  box-shadow: 0px 0px 6px rgba(0, 0, 0, .8);
+
 }
 
 /* ???: Home Section */
 .home-container {
+  margin: 42px 0px;
   display: flex;
   flex-direction: column;
   align-items: center;
@@ -37,55 +54,172 @@ body {
 
 .home-container .btn-link {
   margin: 12px 0px;
-  padding: 4px 16px;
+  padding: 5px 21px;
   text-decoration: none;
-  color: var(--col-whithe);
+  color: var(--col-white);
   background-color: var(--col-l-blue);
-  border-radius: 4px;
-  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.3);
+  border-radius: 3px;
+  box-shadow: 1px 2px 4px 1px var(--col-alpha-d-blue);
+}
 
+.home-container .btn-link:hover {
+  background-color: var(--col-d-blue);
 }
 
 /* ???: beers */
 .beers-items {
+  margin: auto;
+  width: 97%;
+  padding: 0;
   display: flex;
-  flex-flow: column;
-  align-items: center;
+  justify-content: center;
+  flex-wrap: wrap;
+  overflow: hidden;
 }
 
-.beers-item .beer-img {
-  width: 180px;
+#beer-card-anchor {
+  margin: 21px 0px 0px 21px;
+  display: flex;
+  text-decoration: none;
+  color: black;
+  border: solid 1px #0a2c42;
+  background-color: var(--col-white);
+  /* because you want to add a different bg for body*/
+  border-radius: 6px;
+  width: 500px;
+  height: 320px;
+  box-shadow: -1px 1px 4px 2px var(--col-alpha-d-blue);
+
 }
 
+#beer-card-anchor:hover {
+  background-color: var(--col-l-blue);
+  color: var(--col-white);
+}
+
+#beer-card-anchor .beer-img {
+  margin: 21px 10px 0 21px;
+  max-height: 280px;
+}
+
+
+.beers-item .beer-title {
+  margin: 42px 0 0;
+}
+
+.beers-item .tagline {
+  margin: 8px 21px;
+  color: var(--col-grey);
+  font-size: 1.1rem;
+}
+
+.beers-item .description {
+  margin: 8px 21px;
+  font-size: 0.92rem;
+}
+
+.random-beer {
+  display: flex;
+  justify-content: center;
+}
+
+.food-info {
+  margin: 21px 0 0 0;
+  padding: 21px;
+  border-right: double 6px #0a2c42;
+  max-width: 480px;
+}
 
 /* navbar section */
 nav {
   position: fixed;
   top: 0;
   left: 0;
-  width: 100%;
+  width: 100vw;
   display: flex;
   background-color: var(--col-l-blue);
-  box-shadow: 1px 1px 2px 1px rgba(0, 0, 0, 0.3);
+  box-shadow: 1px 1px 3px 1px var(--col-alpha-d-blue);
 }
 
 .navbar .nav-logo {
   margin: 4px 42px 4px 42px;
 }
 
+/* ???: super fancy navigation */
+/* ***: with many thanks to https://youtu.be/BDvWKwHiSIw */
+
 .navbar .nav-links.container {
   display: flex;
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+
+
+}
+
+.nav-links.container li {
+  position: relative;
+  padding: 0 20px;
+  height: 100%;
+  display: flex;
   align-items: center;
-  margin: 9px;
 }
 
-.navbar div .navlink {
-  margin: 0px 10px;
-  color: var(--col-whithe);
+
+.navbar ul .navlink {
+  z-index: 1;
+  color: var(--col-white);
   text-decoration: none;
-  text-align: 1px 1px 2px 1px rgba(0, 0, 0, 0.23);
+  font-weight: bold;
+  padding: 10px 5px;
+  text-shadow: 1px 1px 0px var(--col-alpha-d-blue);
 }
 
+.nav-links.container li::before {
+  content: "";
+  position: absolute;
+  height: 33.33%;
+  width: 0;
+  background-color: var(--col-d-blue);
+  right: 0;
+  z-index: 0;
+  top: 33.33%;
+  transition: all 0.5s;
+}
+
+.nav-links.container li::after {
+  content: "";
+  position: absolute;
+  height: 33.33%;
+  width: 0;
+  background-color: var(--col-d-blue);
+  left: 0;
+  z-index: 0;
+  bottom: 0;
+  transition: all 0.5s;
+}
+
+.navbar ul .navlink::before {
+  position: absolute;
+  content: "";
+  height: 33.33%;
+  width: 0;
+  background-color: var(--col-d-blue);
+  bottom: 66.66%;
+  left: 0;
+  transition: all 0.5s;
+}
+
+.nav-links.container li:hover::before,
+.nav-links.container li:hover::after,
+.nav-links.container li:hover .navlink::before {
+  width: 100%;
+}
+
+/* ???: end of fancy nav links */
+#navgap {
+  height: 43;
+}
 
 
 /* ???: footer section */
@@ -93,6 +227,7 @@ nav {
 footer {
   margin-top: 42px;
   display: flex;
+  color: var(--col-white)
 }
 
 footer .footer-container {
@@ -101,6 +236,11 @@ footer .footer-container {
 }
 
 .footer-container h5 {
-  color: var(--col-whithe);
-  margin-left: 42px;
+
+  margin: 5px 42px;
+}
+
+.footer-container a {
+  text-decoration: none;
+  color: var(--col-l-blue);
 }
